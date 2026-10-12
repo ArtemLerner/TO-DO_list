@@ -37,7 +37,17 @@ export function useTask(){
             if (filter === "Completed") return task.completed;
             if (filter === "Proses") return !task.completed;
         })
-
-
-    return{addTask, deleteTask, completedTask, buttonFiltering, setFilter}
+    const taskCompletedCount = tasks.filter(task=>{
+        return task.completed
+    })
+    const clearCompleted = ()=>{
+        setTasks( prev => prev.filter(t => !t.completed))
+    }
+    // const editTask = (id: string, name: string) =>{
+    //
+    //
+    // }
+    return{tasks, addTask, deleteTask, completedTask,
+        buttonFiltering, setFilter, taskCompletedCount,
+        clearCompleted}
 }
