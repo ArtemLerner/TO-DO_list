@@ -4,4 +4,6 @@ export interface Task {
     completed: boolean;
 }
 
-export type Filter = 'All' | 'Completed';
+export const FILTER = ['All', 'Completed', 'Proses'] as const;
+
+export type Filter = typeof FILTER[number]

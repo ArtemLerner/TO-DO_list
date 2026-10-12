@@ -2,9 +2,10 @@ import {Form} from "../components/Form/Form.tsx";
 // import {Header} from "../components/Header/Header.tsx";
 import {TaskRender} from "../components/Task/Task.tsx";
 import {useTask} from "../hooks/tasks.tsx";
+import {FilterButton} from "../components/Filters/Filter.tsx";
 
 export function HomePage() {
-    const {tasks, addTask, deleteTask, completedTask} = useTask();
+    const {addTask, deleteTask, completedTask, buttonFiltering, setFilter} = useTask();
 
 
     return (
@@ -13,7 +14,8 @@ export function HomePage() {
             <main>
                 <div className="list_task">
                 {
-                    tasks.map(item => (
+                    buttonFiltering.map(item => (
+
                         <TaskRender
                             key={item.id}
                             name={item.name}
@@ -25,7 +27,11 @@ export function HomePage() {
                     ))
                 }
                 </div>
-                <Form addTask={addTask}/>
+                <div className="form-block">
+                    <Form addTask={addTask}/>
+                    <FilterButton buttonFiltering={setFilter}/>
+                    <p>All tasks = {buttonFiltering.length} </p>
+                </div>
             </main>
         </>
     )

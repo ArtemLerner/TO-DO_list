@@ -59,7 +59,77 @@ main {
 .task-block{
   width: 400px;
 }
+.form-block{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-/* ==========================================
-   4. Карточки с задачами (Task Blocks)
-   ========================================== */
+// Task.module.less
+@blue: #2352c8;
+@blue-dark: #1a3f9e;
+@text: #2d3748;
+
+.task-block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 28px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 16px;
+
+  .task {
+    margin: 0;
+    font-size: 20px;
+    color: @text;
+    word-break: break-word;
+  }
+
+  // строка с галочкой и кнопкой
+  .task-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .task-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: @text;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: @blue;
+      cursor: pointer;
+    }
+  }
+
+  .delete_task {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: @blue;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: @blue-dark;
+    }
+  }
+
+  // когда задача выполнена
+  &.completed .task {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+}
