@@ -11,24 +11,19 @@ export function Form({addTask}: FormProps) {
     const [name, setName] = useState<string>('')
 
     const handleSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if (name.trim() !== ''){
-            addTask({id: crypto.randomUUID(), name: name});
+            addTask({id: crypto.randomUUID(), name: name, completed: false});
         }
         setName('');
-
-        e.preventDefault();
-
     }
 
     return (
-        <>
             <form onSubmit={handleSubmit}>
                 <input type="text"
                        value={name}
                        onChange={event => setName(event.target.value)}/>
                 <button type="submit">submit</button>
             </form>
-        </>
     )
-
 }
