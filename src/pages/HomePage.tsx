@@ -6,7 +6,7 @@ import {FilterButton} from "../components/Filters/Filter.tsx";
 export function HomePage() {
     const {tasks, addTask, deleteTask, completedTask,
         buttonFiltering, setFilter ,taskCompletedCount
-        ,clearCompleted, editTask} = useTask();
+        ,clearCompleted} = useTask();
 
 
     return (
@@ -25,7 +25,6 @@ export function HomePage() {
                             completed={item.completed}
                             onCompleted={completedTask}
                             onDelete={deleteTask}
-                            editTask={editTask}
                         />
                     ))
                 }
