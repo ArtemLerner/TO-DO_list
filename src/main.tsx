@@ -9,13 +9,3 @@ createRoot(document.getElementById('root')!).render(
       <RouterProvider router={router}/>
   </StrictMode>,
 )
-
-
-// ## Roadmap
-//  connect styles task form.
-// - [ ] Mark tasks as completed
-// - [ ] Edit existing tasks
-// - [ ] Filter tasks (all / active / completed)
-// - [ ] Persist tasks in `localStorage`
-// - [ ] Empty state and responsive layout improvements
-// - [ ] Unit tests with Vitest

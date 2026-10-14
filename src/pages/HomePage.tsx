@@ -5,19 +5,17 @@ import {FilterButton} from "../components/Filters/Filter.tsx";
 
 export function HomePage() {
     const {tasks, addTask, deleteTask, completedTask,
-        buttonFiltering, setFilter ,taskCompletedCount
-        ,clearCompleted} = useTask();
+        buttonFiltering, setFilter ,taskCompletedCalc
+        ,clearCompleted, editTask, filter} = useTask();
 
 
     return (
-        <>
-            {/*<Header/>*/}
             <main>
                 <div className="list_task">
                 {
                     buttonFiltering.length === 0 ?
                         (<p>Нет задач</p>):
-                    buttonFiltering.map(item => (
+                        buttonFiltering.map(item => (
                         <TaskRender
                             key={item.id}
                             name={item.name}
@@ -25,17 +23,17 @@ export function HomePage() {
                             completed={item.completed}
                             onCompleted={completedTask}
                             onDelete={deleteTask}
+                            editTask={editTask}
                         />
                     ))
                 }
                 </div>
                 <div className="form-block">
                     <Form addTask={addTask}/>
-                    <FilterButton buttonFiltering={setFilter}/>
-                    <div className="flex">
-                        <p>All = {tasks.length} </p>
-                        <p>Completed = {taskCompletedCount.length} </p>
-                    </div>
+                    <FilterButton
+                        buttonFiltering={setFilter}
+                        filter={filter}
+                    />
                     <form action="">
                         <button
                             onClick={(e)=>{
@@ -44,8 +42,11 @@ export function HomePage() {
                             }}
                         >Clear Completed</button>
                     </form>
+                    <div className="flex">
+                        <p>All = {tasks.length}</p>
+                        <p>Completed = {taskCompletedCalc.length} </p>
+                    </div>
                 </div>
             </main>
-        </>
     )
 }

@@ -13,7 +13,6 @@ function loadTasks() {
 }
 
 export function useTask(){
-
     const [tasks, setTasks] = useState<Task[]>(loadTasks())
     const [filter, setFilter] = useState<Filter>("All")
 
@@ -32,22 +31,21 @@ export function useTask(){
         setTasks(prev => prev.map(task => task.id === id ? {...task, completed: !task.completed}: task));
     }
     const buttonFiltering = tasks.filter(task => {
-            console.log(filter);
             if (filter === "All") return tasks;
             if (filter === "Completed") return task.completed;
-            if (filter === "Proses") return !task.completed;
+            if (filter === "Active") return !task.completed;
         })
-    const taskCompletedCount = tasks.filter(task=>{
+    const taskCompletedCalc = tasks.filter(task=>{
         return task.completed
     })
     const clearCompleted = ()=>{
         setTasks( prev => prev.filter(t => !t.completed))
     }
-    // const editTask = (id: string, name: string) =>{
-    //
-    //
-    // }
+    const editTask = (id: string, name: string) =>{
+        setTasks(prev => prev.map(task => task.id === id ? { ...task, name: name}: task));
+
+    }
     return{tasks, addTask, deleteTask, completedTask,
-        buttonFiltering, setFilter, taskCompletedCount,
-        clearCompleted}
+        buttonFiltering, setFilter, taskCompletedCalc,
+        clearCompleted, editTask, filter}
 }

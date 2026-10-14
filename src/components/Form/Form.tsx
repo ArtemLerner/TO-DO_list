@@ -21,9 +21,10 @@ export function Form({addTask}: FormProps) {
     return (
             <form onSubmit={handleSubmit}>
                 <input type="text"
+                       placeholder="New task..."
                        value={name}
                        onChange={event => setName(event.target.value)}/>
-                <button type="submit">submit</button>
+                <button type="submit" disabled={name.trim() === ''}>submit</button>
             </form>
     )
 }
